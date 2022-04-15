@@ -1,0 +1,10 @@
+Basics:
+https://www.circuitbasics.com/arduino-7-segment-display-tutorial/
+https://www.hackster.io/meljr/7-segment-led-displays-101-how-to-make-one-work-4f78a5
+
+Library:
+https://github.com/DeanIsMe/SevSeg
+
+B4X:
+https://www.b4x.com/android/forum/threads/sevseg-with-inline-c.106952/
+https://www.b4x.com/android/forum/threads/rsevseg.106961/

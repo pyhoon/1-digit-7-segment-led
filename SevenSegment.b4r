@@ -1,0 +1,69 @@
+﻿Build1=Default,B4RDev
+Group=Default Group
+Library1=rcore
+Module1=SevSeg
+NumberOfFiles=0
+NumberOfLibraries=1
+NumberOfModules=1
+Version=3.9
+@EndOfDesignText@
+
+#Region Project Attributes
+	#AutoFlushLogs: True
+	#CheckArrayBounds: True
+	#StackBufferSize: 300
+#End Region
+'Ctrl+Click to open the C code folder: ide://run?File=%WINDIR%\System32\explorer.exe&Args=%PROJECT%\Objects\Src
+
+Sub Process_Globals
+	Public Serial1 As Serial
+End Sub
+
+Private Sub AppStart
+	Serial1.Initialize(115200)
+	Log("AppStart")
+	
+	SevSeg.Begin(SevSeg.COMMON_ANODE, 2, 3, 4, 5, 6, 7, 8, 9)
+
+	' Show All segments including decimal point
+	SevSeg.refreshDisplay
+	Delay(500)
+	
+	' Show/Hide decimal point
+	SevSeg.setDecimalPoint(False)
+	Delay(1000)
+	
+	' Cycle outer LEDs
+	SevSeg.SetSegments(True, False, False, False, False, False, False, False) ' A
+	Delay(200)
+	SevSeg.SetSegments(False, True, False, False, False, False, False, False) ' B
+	Delay(200)
+	SevSeg.SetSegments(False, False, True, False, False, False, False, False) ' C
+	Delay(200)
+	SevSeg.SetSegments(False, False, False, True, False, False, False, False) ' D
+	Delay(200)
+	SevSeg.SetSegments(False, False, False, False, True, False, False, False) ' E
+	Delay(200)
+	SevSeg.SetSegments(False, False, False, False, False, True, False, False) ' F
+	Delay(200)
+	SevSeg.SetSegments(True, False, False, False, False, False, False, False) ' A
+	Delay(200)
+	SevSeg.blank
+	Delay(500)
+	
+	' Show an "Error"
+	Dim val As Int = -1
+	Log(val)
+	SevSeg.setNumber(val)
+	Delay(1000)
+
+	' Count from 0 to 9
+	For i = 0 To 9
+		Log(i)
+		SevSeg.setNumber(i)
+		Delay(1000)
+	Next
+	
+	' Clear all
+	SevSeg.blank
+End Sub
